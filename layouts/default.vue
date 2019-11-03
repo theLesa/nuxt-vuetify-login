@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     login() {
-      alert(this.user + ' ' + this.password)
+      alert('To be implemented')
     }
   }
 }
