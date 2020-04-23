@@ -6,6 +6,7 @@
         <vuetify-logo />
       </div>
       <v-card>
+        <v-btn @click="logout">Logout</v-btn>
         <v-card-title class="headline">
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
@@ -65,11 +66,20 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  middleware: 'authentificated',
+  methods: {
+    logout() {
+      // Code will also be required to invalidate the JWT Cookie on external API
+      Cookie.remove('auth')
+      this.$store.commit('setAuth', null)
+    }
   }
 }
 </script>
